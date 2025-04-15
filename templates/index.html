@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA para Serralheria - Sistema Completo</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/responsive.css" rel="stylesheet">
+    <link href="/static/css/mobile-fixes.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card {
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            background-color: rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        }
+        
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        
+        .btn-success {
+            background-color: #198754;
+            border-color: #198754;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        
+        .text-primary {
+            color: #0d6efd !important;
+        }
+        
+        .text-success {
+            color: #198754 !important;
+        }
+        
+        .text-danger {
+            color: #dc3545 !important;
+        }
+        
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+        
+        .module-container {
+            padding: 20px 0;
+        }
+        
+        .bg-success-light {
+            background-color: rgba(40, 167, 69, 0.15);
+        }
+        
+        .bg-danger-light {
+            background-color: rgba(220, 53, 69, 0.15);
+        }
+        
+        .bg-warning-light {
+            background-color: rgba(255, 193, 7, 0.15);
+        }
+        
+        .bg-info-light {
+            background-color: rgba(23, 162, 184, 0.15);
+        }
+        
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-tools me-2"></i>
+                IA para Serralheria
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-module="main">
+                            <i class="bi bi-house"></i> Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-module="projetos">
+                            <i class="bi bi-kanban"></i> Projetos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-module="clientes">
+                            <i class="bi bi-people"></i> Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-module="orcamentos">
+                            <i class="bi bi-calculator"></i> Orçamentos
+                        </a>
+                    </li>
+                    <li class="nav-item" id="nav-materiais">
+                        <a class="nav-link" href="#" data-module="materiais">
+                            <i class="bi bi-box-seam"></i> Materiais
+                        </a>
+                    </li>
+                    <li class="nav-item" id="nav-financas">
+                        <a class="nav-link" href="#" data-module="financas">
+                            <i class="bi bi-graph-up"></i> Finanças
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-module="configuracoes">
+                            <i class="bi bi-gear"></i> Configurações
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid py-4">
+        <!-- Dashboard Principal -->
+        <div id="main-content">
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <h2 class="mb-4">Dashboard</h2>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Novo Projeto
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Cards de Resumo -->
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-light">
+                        <div class="card-body py-3">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title mb-0 text-muted">Projetos Ativos</h6>
+                                    <h4 class="mt-2 mb-0 text-primary">12</h4>
+                                </div>
+                                <div class="icon-box bg-primary-light rounded p-2">
+                                    <i class="bi bi-kanban text-primary fs-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-light">
+                        <div class="card-body py-3">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title mb-0 text-muted">Orçamentos Pendentes</h6>
+                                    <h4 class="mt-2 mb-0 text-warning">5</h4>
+                                </div>
+                                <div class="icon-box bg-warning-light rounded p-2">
+                                    <i class="bi bi-clipboard-check text-warning fs-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-light">
+                        <div class="card-body py-3">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title mb-0 text-muted">Receita Mensal</h6>
+                                    <h4 class="mt-2 mb-0 text-success">R$ 45.780,00</h4>
+                                </div>
+                                <div class="icon-box bg-success-light rounded p-2">
+                                    <i class="bi bi-graph-up-arrow text-success fs-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-light">
+                        <div class="card-body py-3">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title mb-0 text-muted">Clientes Ativos</h6>
+                                    <h4 class="mt-2 mb-0 text-info">28</h4>
+                                </div>
+                                <div class="icon-box bg-info-light rounded p-2">
+                                    <i class="bi bi-people text-info fs-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projetos Recentes e Próximas Entregas -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Projetos Recentes</h5>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Ver Todos</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Projeto</th>
+                                            <th>Cliente</th>
+                                            <th>Status</th>
+                                            <th>Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Portão Residencial</td>
+                                            <td>João Silva</td>
+                                            <td><span class="badge bg-success">Concluído</span></td>
+                                            <td>R$ 3.500,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Grade de Proteção</td>
+                                            <td>Maria Oliveira</td>
+                                            <td><span class="badge bg-warning">Em Produção</span></td>
+                                            <td>R$ 1.800,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Estrutura para Mezanino</td>
+                                            <td>Mercado Central</td>
+                                            <td><span class="badge bg-primary">Em Instalação</span></td>
+                                            <td>R$ 12.500,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Escada Metálica</td>
+                                            <td>Condomínio Solar</td>
+                                            <td><span class="badge bg-info">Aprovado</span></td>
+                                            <td>R$ 8.200,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cobertura para Garagem</td>
+                                            <td>Pedro Costa</td>
+                                            <td><span class="badge bg-secondary">Em Orçamento</span></td>
+                                            <td>R$ 5.600,00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Próximas Entregas</h5>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Calendário</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Projeto</th>
+                                            <th>Cliente</th>
+                                            <th>Data Prevista</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Estrutura para Mezanino</td>
+                                            <td>Mercado Central</td>
+                                            <td>18/04/2025</td>
+                                            <td><span class="badge bg-primary">Em Instalação</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Grade de Proteção</td>
+                                            <td>Maria Oliveira</td>
+                                            <td>22/04/2025</td>
+                                            <td><span class="badge bg-warning">Em Produção</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Escada Metálica</td>
+                                            <td>Condomínio Solar</td>
+                                            <td>30/04/2025</td>
+                                            <td><span class="badge bg-info">Aprovado</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Portão Industrial</td>
+                                            <td>Construções Rápidas</td>
+                                            <td>05/05/2025</td>
+                                            <td><span class="badge bg-warning">Em Produção</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guarda-corpo</td>
+                                            <td>Escola Nova Era</td>
+                                            <td>12/05/2025</td>
+                                            <td><span class="badge bg-info">Aprovado</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Análise de Riscos e Materiais -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">Análise de Riscos</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Projeto</th>
+                                            <th>Nível de Risco</th>
+                                            <th>Fatores</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Estrutura para Mezanino</td>
+                                            <td><span class="badge bg-danger">Alto</span></td>
+                                            <td>Altura, Carga, Complexidade</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Escada Metálica</td>
+                                            <td><span class="badge bg-warning">Médio</span></td>
+                                            <td>Altura, Acesso</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Portão Industrial</td>
+                                            <td><span class="badge bg-warning">Médio</span></td>
+                                            <td>Peso, Automação</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Grade de Proteção</td>
+                                            <td><span class="badge bg-success">Baixo</span></td>
+                                            <td>Padrão</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guarda-corpo</td>
+                                            <td><span class="badge bg-warning">Médio</span></td>
+                                            <td>Altura, Segurança</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Materiais em Estoque Baixo</h5>
+                            <a href="#" class="btn btn-sm btn-outline-primary" data-module="materiais">Gerenciar</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Material</th>
+                                            <th>Quantidade</th>
+                                            <th>Status</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Metalon 30x30</td>
+                                            <td>15 barras</td>
+                                            <td><span class="badge bg-danger">Crítico</span></td>
+                                            <td><button class="btn btn-sm btn-outline-primary">Comprar</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tubo Redondo 1"</td>
+                                            <td>8 barras</td>
+                                            <td><span class="badge bg-warning">Baixo</span></td>
+                                            <td><button class="btn btn-sm btn-outline-primary">Comprar</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chapa #18</td>
+                                            <td>3 chapas</td>
+                                            <td><span class="badge bg-danger">Crítico</span></td>
+                                            <td><button class="btn btn-sm btn-outline-primary">Comprar</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Eletrodo 6013</td>
+                                            <td>5 kg</td>
+                                            <td><span class="badge bg-warning">Baixo</span></td>
+                                            <td><button class="btn btn-sm btn-outline-primary">Comprar</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disco de Corte 7"</td>
+                                            <td>12 unidades</td>
+                                            <td><span class="badge bg-warning">Baixo</span></td>
+                                            <td><button class="btn btn-sm btn-outline-primary">Comprar</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Containers para os módulos -->
+        <div id="materials-management-container" class="module-container" style="display: none;"></div>
+        <div id="finance-module-container" class="module-container" style="display: none;"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 IA para Serralheria. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Versão 2.0.0</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/gerenciador_materiais.js"></script>
+    <script src="/static/js/catalogo_materiais.js"></script>
+    <script src="/static/js/modulo_financeiro.js"></script>
+    <script src="/static/js/integracao_modulos.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar a integração dos módulos
+            if (typeof window.materialsModule !== 'undefined' && typeof window.materialsModule.init === 'function') {
+                // Módulo de materiais já está disponível
+            }
+            
+            if (typeof window.financeModule !== 'undefined' && typeof window.financeModule.init === 'function') {
+                // Módulo financeiro já está disponível
+            }
+            
+            // Adicionar event listeners para os links de navegação
+            document.querySelectorAll('[data-module]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const moduleType = this.getAttribute('data-module');
+                    
+                    // Ocultar todos os containers
+                    document.querySelectorAll('.module-container, #main-content').forEach(container => {
+                        container.style.display = 'none';
+                    });
+                    
+                    // Mostrar o container correspondente
+                    if (moduleType === 'main') {
+                        document.getElementById('main-content').style.display = 'block';
+                    } else if (moduleType === 'materiais') {
+                        document.getElementById('materials-management-container').style.display = 'block';
+                        if (window.materialsModule && typeof window.materialsModule.init === 'function') {
+                            window.materialsModule.init();
+                        }
+                    } else if (moduleType === 'financas') {
+                        document.getElementById('finance-module-container').style.display = 'block';
+                        if (window.financeModule && typeof window.financeModule.init === 'function') {
+                            window.financeModule.init();
+                        }
+                    }
+                    
+                    // Atualizar links ativos
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+<script src="/static/js/visualizador_3d.js"></script>\n<script src="/static/js/visualizador_3d_optimized.js"></script>\n<script src="/static/js/calculo_espacamento.js"></script>
+<script src="/static/js/estimativa_automatica_refinado.js"></script>
+<script src="/static/js/cadastro_materiais.js"></script>

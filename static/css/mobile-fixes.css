@@ -1,0 +1,277 @@
+/* Ajustes adicionais para melhorar a experiência em dispositivos móveis */
+
+/* Ajustes para tabelas responsivas */
+.table-mobile-stack td {
+    position: relative;
+    padding-left: 50%;
+}
+
+.table-mobile-stack td:before {
+    position: absolute;
+    left: 10px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+/* Adicionar data-labels para tabelas responsivas */
+@media (max-width: 767.98px) {
+    .table-projetos-recentes td:nth-of-type(1):before { content: "Projeto"; }
+    .table-projetos-recentes td:nth-of-type(2):before { content: "Cliente"; }
+    .table-projetos-recentes td:nth-of-type(3):before { content: "Status"; }
+    .table-projetos-recentes td:nth-of-type(4):before { content: "Valor"; }
+    
+    .table-proximas-entregas td:nth-of-type(1):before { content: "Projeto"; }
+    .table-proximas-entregas td:nth-of-type(2):before { content: "Cliente"; }
+    .table-proximas-entregas td:nth-of-type(3):before { content: "Data Prevista"; }
+    .table-proximas-entregas td:nth-of-type(4):before { content: "Status"; }
+    
+    .table-materiais td:nth-of-type(1):before { content: "Material"; }
+    .table-materiais td:nth-of-type(2):before { content: "Tipo"; }
+    .table-materiais td:nth-of-type(3):before { content: "Preço"; }
+    .table-materiais td:nth-of-type(4):before { content: "Estoque"; }
+    .table-materiais td:nth-of-type(5):before { content: "Ações"; }
+}
+
+/* Melhorias para o módulo de cálculo de espaçamento */
+@media (max-width: 767.98px) {
+    #espacamento-form .form-group {
+        margin-bottom: 10px;
+    }
+    
+    #espacamento-result .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    #espacamento-result h5 {
+        font-size: 1rem;
+    }
+    
+    #espacamento-result p {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    #esquema-espacamento {
+        height: 250px !important;
+    }
+}
+
+/* Melhorias para botões em grupos em dispositivos móveis */
+@media (max-width: 575.98px) {
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group > .btn {
+        width: 100%;
+        margin-bottom: 5px;
+        border-radius: 0.25rem !important;
+    }
+    
+    .btn-group > .btn:not(:last-child) {
+        border-bottom-right-radius: 0.25rem !important;
+        border-bottom-left-radius: 0.25rem !important;
+    }
+    
+    .btn-group > .btn:not(:first-child) {
+        border-top-right-radius: 0.25rem !important;
+        border-top-left-radius: 0.25rem !important;
+    }
+}
+
+/* Melhorias para cards em dispositivos móveis */
+@media (max-width: 575.98px) {
+    .card-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .card-header .btn {
+        margin-top: 10px;
+        align-self: stretch;
+    }
+    
+    .card-header h5 {
+        margin-bottom: 0;
+    }
+}
+
+/* Ajustes para o visualizador 3D em dispositivos móveis */
+@media (max-width: 767.98px) {
+    #model-list .list-group-item {
+        padding: 8px 10px;
+    }
+    
+    #model-list .list-group-item h6 {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+    
+    #model-list .list-group-item small {
+        font-size: 0.75rem;
+    }
+    
+    #model-properties {
+        font-size: 0.85rem;
+    }
+    
+    #material-select, #color-select {
+        font-size: 0.9rem;
+    }
+}
+
+/* Melhorias para o menu de navegação em dispositivos móveis */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        max-height: calc(100vh - 56px);
+        overflow-y: auto;
+    }
+    
+    .navbar-nav {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .navbar-nav .nav-item {
+        margin-bottom: 5px;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 10px 15px;
+        border-radius: 4px;
+    }
+}
+
+/* Ajustes para o módulo financeiro em dispositivos móveis */
+@media (max-width: 767.98px) {
+    .financial-card {
+        margin-bottom: 15px;
+    }
+    
+    .financial-card .card-title {
+        font-size: 0.9rem;
+    }
+    
+    .financial-card .financial-value {
+        font-size: 1.2rem;
+    }
+    
+    .financial-card .financial-change {
+        font-size: 0.8rem;
+    }
+}
+
+/* Melhorias para formulários em dispositivos móveis */
+@media (max-width: 575.98px) {
+    .form-floating > .form-control {
+        height: calc(3.5rem + 2px);
+        padding: 1rem 0.75rem;
+    }
+    
+    .form-floating > label {
+        padding: 1rem 0.75rem;
+    }
+}
+
+/* Ajustes para modais em dispositivos móveis */
+@media (max-width: 575.98px) {
+    .modal-header {
+        padding: 0.75rem;
+    }
+    
+    .modal-body {
+        padding: 0.75rem;
+    }
+    
+    .modal-footer {
+        padding: 0.75rem;
+        flex-direction: column;
+    }
+    
+    .modal-footer > .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .modal-footer > .btn:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Melhorias para o aplicativo mobile em dispositivos móveis */
+@media (max-width: 575.98px) {
+    .mobile-app-header .app-title {
+        font-size: 1.1rem;
+    }
+    
+    .mobile-app-header .app-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .mobile-app-content {
+        padding: 10px;
+    }
+    
+    .mobile-app-footer {
+        padding: 8px;
+    }
+    
+    .mobile-app-footer .btn {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Ajustes para o catálogo de materiais em dispositivos móveis */
+@media (max-width: 767.98px) {
+    .material-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+    
+    .material-card .card-img-top {
+        height: 100px;
+    }
+    
+    .material-card .card-body {
+        padding: 10px;
+    }
+    
+    .material-card .card-title {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .material-card .card-text {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+    
+    .material-card .material-price {
+        font-size: 1rem;
+    }
+}
+
+/* Melhorias para acessibilidade em dispositivos móveis */
+@media (max-width: 767.98px) {
+    /* Aumenta contraste para melhor legibilidade */
+    .text-muted {
+        color: #6c757d !important;
+    }
+    
+    /* Aumenta tamanho de fonte mínimo para melhor legibilidade */
+    body {
+        font-size: 16px;
+    }
+    
+    /* Aumenta espaçamento vertical para facilitar toque */
+    .list-group-item {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}

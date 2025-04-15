@@ -1,0 +1,429 @@
+/* Melhorias de responsividade para o sistema IA para Serralheria */
+
+/* Ajustes gerais para dispositivos móveis */
+@media (max-width: 576px) {
+    .container-fluid {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h4 {
+        font-size: 1.2rem;
+    }
+    
+    .card {
+        margin-bottom: 15px;
+    }
+    
+    .card-header {
+        padding: 10px 15px;
+    }
+    
+    .card-body {
+        padding: 12px;
+    }
+    
+    .btn {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .table th, .table td {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .form-control, .form-select {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .form-label {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .badge {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Ajustes para tabelas em dispositivos móveis */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Tabelas horizontalmente scrolláveis em dispositivos muito pequenos */
+    .table-mobile-scroll {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+    
+    /* Tabelas empilhadas para melhor visualização em dispositivos móveis */
+    .table-mobile-stack {
+        border: 0;
+    }
+    
+    .table-mobile-stack thead {
+        display: none;
+    }
+    
+    .table-mobile-stack tr {
+        display: block;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        padding: 8px;
+    }
+    
+    .table-mobile-stack td {
+        display: block;
+        text-align: right;
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+    }
+    
+    .table-mobile-stack td:before {
+        content: attr(data-title);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+    }
+}
+
+/* Ajustes para cards em dispositivos móveis */
+@media (max-width: 576px) {
+    .card-deck {
+        display: block;
+    }
+    
+    .card-deck .card {
+        margin-bottom: 15px;
+    }
+    
+    .icon-box {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .icon-box i {
+        font-size: 1.2rem;
+    }
+}
+
+/* Ajustes para formulários em dispositivos móveis */
+@media (max-width: 576px) {
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-row > .col,
+    .form-row > [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    
+    .input-group {
+        flex-wrap: wrap;
+    }
+    
+    .input-group > .form-control {
+        flex: 1 1 auto;
+        width: 1%;
+    }
+    
+    .input-group-append,
+    .input-group-prepend {
+        display: flex;
+        margin-top: 5px;
+        width: 100%;
+    }
+    
+    .input-group-append .btn,
+    .input-group-prepend .btn {
+        width: 100%;
+    }
+}
+
+/* Ajustes para botões em dispositivos móveis */
+@media (max-width: 576px) {
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-group .btn {
+        margin-bottom: 5px;
+        border-radius: 6px !important;
+    }
+    
+    .btn-group-vertical {
+        width: 100%;
+    }
+    
+    .btn-toolbar {
+        flex-wrap: wrap;
+    }
+    
+    .btn-toolbar .btn-group {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+/* Ajustes para o módulo de visualizador 3D em dispositivos móveis */
+@media (max-width: 768px) {
+    #canvas-container {
+        height: 300px !important;
+    }
+    
+    .zoom-controls {
+        top: 5px;
+        right: 5px;
+    }
+    
+    .zoom-btn {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .info-panel {
+        max-width: 200px;
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+    
+    .info-panel h4 {
+        font-size: 0.9rem;
+    }
+    
+    .info-panel p {
+        font-size: 0.8rem;
+        margin-bottom: 3px;
+    }
+}
+
+/* Ajustes para o módulo de estimativa automática em dispositivos móveis */
+@media (max-width: 768px) {
+    #project-details-form .row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    
+    #project-details-form .col-md-6 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    #estimate-result .alert {
+        padding: 10px;
+    }
+    
+    #materials-estimate table,
+    #risk-analysis table {
+        font-size: 0.8rem;
+    }
+}
+
+/* Ajustes para o módulo de cálculo de espaçamento em dispositivos móveis */
+@media (max-width: 768px) {
+    #espacamento-container .row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    
+    #espacamento-container .col-md-4,
+    #espacamento-container .col-md-8,
+    #espacamento-container .col-md-6 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    #esquema-espacamento {
+        height: 200px !important;
+    }
+    
+    #espacamento-result .alert {
+        padding: 10px;
+    }
+    
+    #tesouras-espacamento table,
+    #tercas-espacamento table {
+        font-size: 0.8rem;
+    }
+}
+
+/* Ajustes para o módulo financeiro em dispositivos móveis */
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px !important;
+    }
+    
+    .financial-summary {
+        font-size: 0.9rem;
+    }
+    
+    .financial-summary .value {
+        font-size: 1.2rem;
+    }
+}
+
+/* Ajustes para o catálogo de materiais em dispositivos móveis */
+@media (max-width: 768px) {
+    .material-card {
+        margin-bottom: 10px;
+    }
+    
+    .material-card .card-title {
+        font-size: 1rem;
+    }
+    
+    .material-card .card-text {
+        font-size: 0.85rem;
+    }
+    
+    .material-card .material-price {
+        font-size: 1.1rem;
+    }
+}
+
+/* Ajustes para o aplicativo mobile em dispositivos móveis */
+@media (max-width: 576px) {
+    .mobile-app-container {
+        padding: 10px;
+    }
+    
+    .mobile-app-header {
+        padding: 8px 10px;
+    }
+    
+    .mobile-app-content {
+        padding: 10px;
+    }
+    
+    .mobile-app-footer {
+        padding: 8px 10px;
+    }
+    
+    .mobile-nav-tabs .nav-link {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Melhorias para o menu de navegação em dispositivos móveis */
+@media (max-width: 992px) {
+    .navbar-collapse {
+        background-color: var(--primary-color);
+        padding: 10px;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-nav .nav-item {
+        margin-bottom: 5px;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 8px 15px;
+        border-radius: 4px;
+    }
+    
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .navbar-toggler {
+        border: none;
+        padding: 8px;
+    }
+    
+    .navbar-toggler:focus {
+        box-shadow: none;
+        outline: none;
+    }
+    
+    .navbar-toggler-icon {
+        width: 1.2em;
+        height: 1.2em;
+    }
+}
+
+/* Ajustes para o layout geral em dispositivos móveis */
+@media (max-width: 768px) {
+    .py-4 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+    
+    .mb-4 {
+        margin-bottom: 1rem !important;
+    }
+    
+    .mt-4 {
+        margin-top: 1rem !important;
+    }
+    
+    .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* Melhorias para acessibilidade em dispositivos móveis */
+@media (max-width: 768px) {
+    input, select, textarea, button {
+        font-size: 16px !important; /* Evita zoom automático em iOS */
+    }
+    
+    .form-control:focus, .btn:focus {
+        outline: 2px solid var(--secondary-color);
+    }
+    
+    /* Aumenta área de toque para elementos interativos */
+    .nav-link, .btn, .form-check-label, .dropdown-item {
+        padding: 8px 12px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Ajustes para orientação paisagem em dispositivos móveis */
+@media (max-width: 768px) and (orientation: landscape) {
+    .navbar {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    
+    .container-fluid {
+        padding-top: 10px;
+    }
+    
+    #canvas-container {
+        height: 200px !important;
+    }
+    
+    .card {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,17 @@
+name: ia-serralheria
+region: sao-paulo
+services:
+  - type: web
+    name: ia-serralheria-web
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///serralheria.db
+    healthCheckPath: /
+    autoDeploy: true
