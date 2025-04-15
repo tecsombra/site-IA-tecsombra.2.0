@@ -213,3 +213,7 @@ def gerar_pdf_orcamento(orcamento_data):
 @main_bp.route('/')
 def index():
     return render_template('index.html')
+
+@main_bp.route('/upload-documento')
+def upload_documento():
+    return render_template('upload_documento.html')

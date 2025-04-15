@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Documentos - IA para Serralheria</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/responsive.css" rel="stylesheet">
+    <link href="/static/css/mobile-fixes.css" rel="stylesheet">
+    
+    <style>
+        .drop-zone {
+            border: 2px dashed #0d6efd;
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+        }
+        
+        .drop-zone.highlight {
+            background-color: #e2f0ff;
+            border-color: #0b5ed7;
+        }
+        
+        .drop-zone-prompt {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .drop-zone-icon {
+            font-size: 3rem;
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .upload-btn {
+            background-color: #0d6efd;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-btn:hover {
+            background-color: #0b5ed7;
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .analysis-results-container {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        
+        .analysis-actions {
+            margin-top: 30px;
+        }
+        
+        .risk-badge {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .risk-baixo {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        
+        .risk-medio {
+            background-color: #fff3cd;
+            color: #664d03;
+        }
+        
+        .risk-alto {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+        
+        .risk-muito_alto {
+            background-color: #842029;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-tools me-2"></i>
+                IA para Serralheria
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" data-module="main">
+                            <i class="bi bi-house"></i> Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-module="projetos">
+                            <i class="bi bi-kanban"></i> Projetos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-module="clientes">
+                            <i class="bi bi-people"></i> Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-module="orcamentos">
+                            <i class="bi bi-calculator"></i> Orçamentos
+                        </a>
+                    </li>
+                    <li class="nav-item" id="nav-materiais">
+                        <a class="nav-link" href="#" data-module="materiais">
+                            <i class="bi bi-box-seam"></i> Materiais
+                        </a>
+                    </li>
+                    <li class="nav-item" id="nav-financas">
+                        <a class="nav-link" href="#" data-module="financas">
+                            <i class="bi bi-graph-up"></i> Finanças
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-module="configuracoes">
+                            <i class="bi bi-gear"></i> Configurações
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-4">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h2 class="mb-4">Análise de Documentos Técnicos</h2>
+                <p class="lead">Faça upload de plantas, projetos ou especificações técnicas para análise automática e geração de orçamentos.</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <a href="/" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+        
+        <!-- Upload Form -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Upload de Documento</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="documentUploadForm" enctype="multipart/form-data">
+                            <div class="mb-4">
+                                <label for="projectName" class="form-label">Nome do Projeto</label>
+                                <input type="text" class="form-control" id="projectName" name="projectName" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="clientName" class="form-label">Nome do Cliente</label>
+                                <input type="text" class="form-control" id="clientName" name="clientName">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label">Documento Técnico</label>
+                                <div id="dropZone" class="drop-zone">
+                                    <div class="drop-zone-icon">
+                                        <i class="bi bi-file-earmark-arrow-up"></i>
+                                    </div>
+                                    <div class="drop-zone-prompt">Arraste e solte arquivos aqui ou clique para selecionar</div>
+                                    <input type="file" id="documentFile" name="arquivo" class="file-input" accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.bmp">
+                                    <div class="upload-btn">Selecionar Arquivo</div>
+                                </div>
+                                <div class="form-text">Formatos suportados: PDF, JPG, PNG, TIFF, BMP</div>
+                            </div>
+                            
+                            <div id="uploadProgress" class="progress-container">
+                                <label class="form-label">Processando documento...</label>
+                                <div class="progress" style="height: 25px;">
+                                    <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4 mt-4">
+                                <button type="button" id="toggleAdvancedOptions" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-gear"></i> Opções Avançadas
+                                </button>
+                            </div>
+                            
+                            <div class="advanced-options" style="display: none;">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="maxHeight" class="form-label">Altura Máxima (m)</label>
+                                        <input type="number" class="form-control" id="maxHeight" name="maxHeight" step="0.1" min="0">
+                                    </div>
+                                    
+                                    <div class="col-md-4 mb-3">
+                                        <label for="complexity" class="form-label">Complexidade</label>
+                                        <select class="form-select" id="complexity" name="complexity">
+                                            <option value="baixa">Baixa</option>
+                                            <option value="media">Média</option>
+                                            <option value="alta">Alta</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-4 mb-3">
+                                        <label for="environment" class="form-label">Ambiente</label>
+                                        <select class="form-select" id="environment" name="environment">
+                                            <option value="controlado">Controlado (Oficina)</option>
+                                            <option value="externo">Externo</option>
+                                            <option value="externo_adverso">Externo com Condições Adversas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="profitMargin" class="form-label">Margem de Lucro (%)</label>
+                                        <input type="number" class="form-control" id="profitMargin" name="profitMargin" value="30" min="0" max="100">
+                                    </div>
+                                    
+                                    <div class="col-md-4 mb-3">
+                                        <label for="laborCostPercentage" class="form-label">Custo de Mão de Obra (%)</label>
+                                        <input type="number" class="form-control" id="laborCostPercentage" name="laborCostPercentage" value="40" min="0" max="100">
+                                    </div>
+                                    
+                                    <div class="col-md-4 mb-3">
+                                        <label for="taxRate" class="form-label">Alíquota de Imposto (%)</label>
+                                        <input type="number" class="form-control" id="taxRate" name="taxRate" value="6" min="0" max="100">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-search"></i> Analisar Documento
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Informações</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Como funciona?</h6>
+                        <p>Nossa IA analisa documentos técnicos para extrair informações relevantes como dimensões, elementos estruturais e materiais necessários.</p>
+                        
+                        <h6>Documentos Suportados</h6>
+                        <ul>
+                            <li>Plantas técnicas (PDF)</li>
+                            <li>Desenhos e croquis (JPG, PNG)</li>
+                            <li>Especificações técnicas (PDF)</li>
+                            <li>Fotos do local (JPG, PNG)</li>
+                        </ul>
+                        
+                        <h6>Resultados da Análise</h6>
+                        <p>Após o processamento, você receberá:</p>
+                        <ul>
+                            <li>Dimensões detectadas</li>
+                            <li>Elementos estruturais reconhecidos</li>
+                            <li>Lista de materiais estimados</li>
+                            <li>Custos estimados</li>
+                            <li>Análise de risco do projeto</li>
+                        </ul>
+                        
+                        <div class="alert alert-info mt-3">
+                            <i class="bi bi-info-circle"></i> Os resultados podem ser ajustados manualmente antes de gerar o orçamento final.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Analysis Results -->
+        <div id="analysisResults" class="mt-4" style="display: none;">
+            <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+        <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Carregando...</span>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="/static/js/processador_documentos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Referência ao botão de upload
+            const uploadBtn = document.querySelector('.upload-btn');
+            const fileInput = document.getElementById('documentFile');
+            
+            // Configurar evento de clique no botão de upload
+            uploadBtn.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            // Toggle para opções avançadas
+            document.getElementById('toggleAdvancedOptions').addEventListener('click', function() {
+                const advancedOptions = document.querySelector('.advanced-options');
+                if (advancedOptions.style.display === 'block') {
+                    advancedOptions.style.display = 'none';
+                    this.innerHTML = '<i class="bi bi-gear"></i> Opções Avançadas';
+                } else {
+                    advancedOptions.style.display = 'block';
+                    this.innerHTML = '<i class="bi bi-gear-fill"></i> Ocultar Opções Avançadas';
+                }
+            });
+            
+            // Configurar evento de submit do formulário
+            document.getElementById('documentUploadForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Verificar se um arquivo foi selecionado
+                if (fileInput.files.length === 0) {
+                    alert('Por favor, selecione um arquivo para análise.');
+                    return;
+                }
+                
+                // Mostrar overlay de carregamento
+                document.getElementById('loadingOverlay').style.display = 'flex';
+                
+                // Simular processamento (será substituído pela implementação real)
+                setTimeout(function() {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
